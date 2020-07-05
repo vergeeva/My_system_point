@@ -53,8 +53,7 @@ public:
 		this->m = mm;
 		if (!this->check()) this->m = 1;
 	}
-	virtual String^ ToString_m() override;
-	virtual String^ ToString_all() override;
+	//virtual String^ ToString() override;
 
 	property double M {
 		double  get() {
@@ -109,11 +108,11 @@ public:
 	void View(System::Windows::Forms::DataGridView^ DGV);
 	bool empty();
 	bool full();
-	bool del(double);
+	bool del(double, double, double);
 	bool add(my_material_point^);
 	double m_sum();
 	my_material_point^ find_max();
-	My_Point^ center_of_heavy();
+	my_material_point^ center_of_heavy();
 	property int Len {
 		int  get() {
 			return len;

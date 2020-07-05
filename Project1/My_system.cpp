@@ -20,14 +20,10 @@ double My_Point::Distance()
 	return (sqrt(pow(x, 2) + pow(y, 2)));
 }
 
-String^ my_material_point::ToString_m() {
-	return String::Format("{0} êã", m);
-}
-
-String^ my_material_point::ToString_all()
-{
-	return String::Format("{0};{1}, weight: {2} êã", this->X, this->Y, m);
-}
+//String^ my_material_point::ToString()
+//{
+//	return String::Format("{0};{1}, weight: {2} êã", this->X, this->Y, m);
+//}
 
 bool my_material_point::operator < (my_material_point^ other)
 {
@@ -60,13 +56,13 @@ bool my_system_point::full()
 {
 	return len == 100;
 }
-bool my_system_point::del(double m)
+bool my_system_point::del(double m, double x, double y)
 {
 	if (!empty())
 	{
 		for (int i = 0; i < len; i++)
 		{
-			if (this->sys_point[i]->M == m)
+			if (this->sys_point[i]->M == m && this->sys_point[i]->X == x && this->sys_point[i]->Y == y)
 			{
 				for (int k = i; k < len; k++)
 				{
@@ -119,18 +115,17 @@ my_material_point^ my_system_point::find_max()
 	return A;
 }
 
-My_Point^ my_system_point::center_of_heavy()
+my_material_point^ my_system_point::center_of_heavy()
 {
-	My_Point ^A;
-	A = gcnew My_Point(0,0);
-	double sum_x, sum_y;
+	my_material_point^ A;
+	A = gcnew my_material_point(0, 0, 0);
 	for (int i = 0; i < len; i++)
 	{
 		A->X += this->sys_point[i]->X;
 		A->Y += this->sys_point[i]->Y;
 	}
-	A->X = (round((A->X / len)*100))/100;
-	A->Y = (round((A->Y / len)*100))/100;
+	A->X = (round((A->X / m_sum())*100))/100;
+	A->Y = (round((A->Y / m_sum())*100))/100;
 	return A;
 }
 
@@ -148,7 +143,7 @@ void my_system_point:: View(System::Windows::Forms::DataGridView^ DGV)
 		for (int i = 0; i < len; i++)
 		{
 			DGV->Rows[i]->Cells[0]->Value = this->sys_point[i]->ToString();
-			DGV->Rows[i]->Cells[1]->Value = this->sys_point[i]->ToString_m();
+			DGV->Rows[i]->Cells[1]->Value = this->sys_point[i]->M;
 		}
 	}
 }

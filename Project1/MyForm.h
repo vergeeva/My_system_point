@@ -66,6 +66,10 @@ namespace Project1 {
 	private: System::Windows::Forms::Label^ label9;
 	private: System::Windows::Forms::TextBox^ textBox9;
 	private: System::Windows::Forms::Label^ label10;
+	private: System::Windows::Forms::TextBox^ textBox10;
+	private: System::Windows::Forms::TextBox^ textBox11;
+	private: System::Windows::Forms::Label^ label11;
+	private: System::Windows::Forms::Label^ label12;
 
 	private:
 		/// <summary>
@@ -105,6 +109,10 @@ namespace Project1 {
 			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->textBox9 = (gcnew System::Windows::Forms::TextBox());
 			this->label10 = (gcnew System::Windows::Forms::Label());
+			this->textBox10 = (gcnew System::Windows::Forms::TextBox());
+			this->textBox11 = (gcnew System::Windows::Forms::TextBox());
+			this->label11 = (gcnew System::Windows::Forms::Label());
+			this->label12 = (gcnew System::Windows::Forms::Label());
 			this->groupBox1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
@@ -229,7 +237,7 @@ namespace Project1 {
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(258, 29);
 			this->button2->TabIndex = 9;
-			this->button2->Text = L"Удалить элемент по массе:";
+			this->button2->Text = L"Удалить элемент";
 			this->button2->UseVisualStyleBackColor = false;
 			this->button2->Click += gcnew System::EventHandler(this, &MyForm::button2_Click);
 			// 
@@ -244,7 +252,7 @@ namespace Project1 {
 			// 
 			// textBox4
 			// 
-			this->textBox4->Location = System::Drawing::Point(72, 279);
+			this->textBox4->Location = System::Drawing::Point(72, 324);
 			this->textBox4->Name = L"textBox4";
 			this->textBox4->Size = System::Drawing::Size(193, 22);
 			this->textBox4->TabIndex = 6;
@@ -252,7 +260,7 @@ namespace Project1 {
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(12, 282);
+			this->label5->Location = System::Drawing::Point(12, 324);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(47, 17);
 			this->label5->TabIndex = 6;
@@ -315,7 +323,7 @@ namespace Project1 {
 			// textBox5
 			// 
 			this->textBox5->Enabled = false;
-			this->textBox5->Location = System::Drawing::Point(6, 375);
+			this->textBox5->Location = System::Drawing::Point(6, 394);
 			this->textBox5->Name = L"textBox5";
 			this->textBox5->Size = System::Drawing::Size(320, 22);
 			this->textBox5->TabIndex = 19;
@@ -324,7 +332,7 @@ namespace Project1 {
 			// label9
 			// 
 			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(30, 352);
+			this->label9->Location = System::Drawing::Point(30, 374);
 			this->label9->Name = L"label9";
 			this->label9->Size = System::Drawing::Size(245, 17);
 			this->label9->TabIndex = 20;
@@ -348,6 +356,38 @@ namespace Project1 {
 			this->label10->TabIndex = 22;
 			this->label10->Text = L"Суммарная масса всех элементов:";
 			// 
+			// textBox10
+			// 
+			this->textBox10->Location = System::Drawing::Point(72, 286);
+			this->textBox10->Name = L"textBox10";
+			this->textBox10->Size = System::Drawing::Size(67, 22);
+			this->textBox10->TabIndex = 6;
+			// 
+			// textBox11
+			// 
+			this->textBox11->Location = System::Drawing::Point(195, 286);
+			this->textBox11->Name = L"textBox11";
+			this->textBox11->Size = System::Drawing::Size(70, 22);
+			this->textBox11->TabIndex = 23;
+			// 
+			// label11
+			// 
+			this->label11->AutoSize = true;
+			this->label11->Location = System::Drawing::Point(31, 291);
+			this->label11->Name = L"label11";
+			this->label11->Size = System::Drawing::Size(30, 17);
+			this->label11->TabIndex = 6;
+			this->label11->Text = L"x = ";
+			// 
+			// label12
+			// 
+			this->label12->AutoSize = true;
+			this->label12->Location = System::Drawing::Point(158, 286);
+			this->label12->Name = L"label12";
+			this->label12->Size = System::Drawing::Size(31, 17);
+			this->label12->TabIndex = 6;
+			this->label12->Text = L"y = ";
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -355,6 +395,10 @@ namespace Project1 {
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
 				static_cast<System::Int32>(static_cast<System::Byte>(192)));
 			this->ClientSize = System::Drawing::Size(806, 440);
+			this->Controls->Add(this->label12);
+			this->Controls->Add(this->label11);
+			this->Controls->Add(this->textBox11);
+			this->Controls->Add(this->textBox10);
 			this->Controls->Add(this->label10);
 			this->Controls->Add(this->textBox9);
 			this->Controls->Add(this->label9);
@@ -395,7 +439,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 			this->textBox5->Text = "Добавление прошло успешно";
 			this->textBox8->Text = Convert::ToString(A->center_of_heavy());
 			this->textBox7->Text = Convert::ToString(A->find_max()->ToString());
-			this->textBox6->Text = Convert::ToString(A->find_max()->ToString_m());
+			this->textBox6->Text = Convert::ToString(A->find_max()->M);
 			this->textBox9->Text = Convert::ToString(A->m_sum());
 		}
 		else
@@ -413,12 +457,12 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 {
 	if (textBox4->Text != "")
 	{
-		if ((A->del(Convert::ToDouble(this->textBox4->Text))))
+		if ((A->del(Convert::ToDouble(this->textBox4->Text), Convert::ToDouble(this->textBox10->Text), Convert::ToDouble(this->textBox11->Text))))
 		{
 			this->textBox5->Text = "Элемент успешно удалён";
 			this->textBox8->Text = Convert::ToString(A->center_of_heavy());
 			this->textBox7->Text = Convert::ToString(A->find_max()->ToString());
-			this->textBox6->Text = Convert::ToString(A->find_max()->ToString_m());
+			this->textBox6->Text = Convert::ToString(A->find_max()->M);
 			this->textBox9->Text = Convert::ToString(A->m_sum());
 		}
 		else this->textBox5->Text = "Нечего удалять";
@@ -426,7 +470,7 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	}
 	else
 	{
-		this->textBox5->Text = "Введите массу под кнопкой удаления";
+		this->textBox5->Text = "Введите все условия под кнопкой удаления";
 	}
 }
 };
