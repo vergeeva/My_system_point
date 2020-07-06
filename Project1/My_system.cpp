@@ -56,13 +56,70 @@ bool my_system_point::full()
 {
 	return len == 100;
 }
-bool my_system_point::del(double m, double x, double y)
+bool my_system_point::del(my_material_point ^value)
+{
+		if (!empty())
+		{
+			for (int i = 0; i < len; i++)
+			{
+				if (this->sys_point[i]->M == value->M && this->sys_point[i]->X == value->X && this->sys_point[i]->Y == value->Y)
+				{
+					for (int k = i; k < len; k++)
+					{
+						sys_point[k] = sys_point[k + 1];
+					}
+					len--;
+					return 1;
+				}
+			}
+		}
+		else return 0;
+}
+bool my_system_point::del_x(double x)
+{
+		if (!empty())
+		{
+			for (int i = 0; i < len; i++)
+			{
+				if (this->sys_point[i]->X == x)
+				{
+					for (int k = i; k < len; k++)
+					{
+						sys_point[k] = sys_point[k + 1];
+					}
+					len--;
+					return 1;
+				}
+			}
+		}
+		else return 0;
+}
+bool my_system_point::del_y(double y)
+{
+		if (!empty())
+		{
+			for (int i = 0; i < len; i++)
+			{
+				if (this->sys_point[i]->Y == y)
+				{
+					for (int k = i; k < len; k++)
+					{
+						sys_point[k] = sys_point[k + 1];
+					}
+					len--;
+					return 1;
+				}
+			}
+		}
+		else return 0;
+}
+bool my_system_point::del_m(double m)
 {
 	if (!empty())
 	{
 		for (int i = 0; i < len; i++)
 		{
-			if (this->sys_point[i]->M == m && this->sys_point[i]->X == x && this->sys_point[i]->Y == y)
+			if (this->sys_point[i]->M == m)
 			{
 				for (int k = i; k < len; k++)
 				{
@@ -74,6 +131,7 @@ bool my_system_point::del(double m, double x, double y)
 		}
 	}
 	else return 0;
+
 }
 bool my_system_point::add(my_material_point ^object)
 {

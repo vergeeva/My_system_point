@@ -108,7 +108,10 @@ public:
 	void View(System::Windows::Forms::DataGridView^ DGV);
 	bool empty();
 	bool full();
-	bool del(double, double, double);
+	bool del(my_material_point^);
+	bool del_x(double);
+	bool del_y(double);
+	bool del_m(double);
 	bool add(my_material_point^);
 	double m_sum();
 	my_material_point^ find_max();
